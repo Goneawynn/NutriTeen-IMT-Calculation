@@ -372,7 +372,7 @@ body {
 /* Aktivitas cards */
 .aktivitas-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 0.75rem;
 }
 .aktivitas-card {
@@ -977,10 +977,16 @@ body {
           <label class="form-label">Tingkat Aktivitas Fisik</label>
           <div class="aktivitas-grid">
             <label class="aktivitas-card">
+              <input type="radio" name="aktivitas" value="minimal">
+              <div class="ak-icon">💼</div>
+              <div class="ak-title">Minimal</div>
+              <div class="ak-desc">Kerja kantoran, minimal bergerak<br>Faktor: 1.2</div>
+            </label>
+            <label class="aktivitas-card">
               <input type="radio" name="aktivitas" value="ringan">
               <div class="ak-icon">🚶</div>
               <div class="ak-title">Ringan</div>
-              <div class="ak-desc">Olahraga 1–3 hari/minggu<br>Faktor: 1.375</div>
+              <div class="ak-desc">Olahraga 1–2 hari/minggu<br>Faktor: 1.375</div>
             </label>
             <label class="aktivitas-card">
               <input type="radio" name="aktivitas" value="sedang">
@@ -993,6 +999,12 @@ body {
               <div class="ak-icon">🏋️</div>
               <div class="ak-title">Berat</div>
               <div class="ak-desc">Olahraga 6–7 hari/minggu<br>Faktor: 1.725</div>
+            </label>
+            <label class="aktivitas-card">
+              <input type="radio" name="aktivitas" value="ekstrem">
+              <div class="ak-icon">⚡</div>
+              <div class="ak-title">Ekstrem</div>
+              <div class="ak-desc">Atlet, 2x sehari atau lebih<br>Faktor: 1.9</div>
             </label>
           </div>
           <span class="form-error" id="err-aktivitas">Pilih tingkat aktivitas fisik.</span>
@@ -1730,7 +1742,7 @@ document.getElementById('formIMT').addEventListener('submit', function(e) {
 
   // 1. Hasil IMT
   document.getElementById('hasilIMT').textContent  = fmt(imt);
-  document.getElementById('hasilStatus').innerHTML = `${status.emoji} ${status.label}`;
+  document.getElementById('hasilStatus').innerHTML = `${status.emoji} ${status.label} • ${klasif.label}`;
   document.getElementById('ringkasanData').innerHTML =
     `👤 ${nama} &nbsp;|&nbsp; ${jkLabel}<br>` +
     `📅 ${usiaBulanLabel(usiaBln)}<br>` +
@@ -1747,10 +1759,17 @@ document.getElementById('formIMT').addEventListener('submit', function(e) {
     const isMe = (imt >= k.min && imt < k.max);
     const tr   = document.createElement('tr');
     if (isMe) tr.className = 'highlight';
-    const maxLabel = k.max === 999 ? '≥ 27.0' : `< ${k.max}`;
+    let rangeLabel;
+    if (k.max === 999) {
+      rangeLabel = `≥ ${k.min}`;
+    } else if (k.min === 0) {
+      rangeLabel = `< ${k.max}`;
+    } else {
+      rangeLabel = `${k.min} – < ${k.max}`;
+    }
     tr.innerHTML = `
       <td><strong>${k.label}</strong>${isMe ? ' 👈 Kamu' : ''}</td>
-      <td>${k.min === 0 ? '< 17.0' : `${k.min} – ${maxLabel}`}</td>
+      <td>${rangeLabel}</td>
       <td>${k.desc}</td>`;
     tkBody.appendChild(tr);
   });

@@ -945,35 +945,35 @@ body {
             </thead>
             <tbody>
               <tr>
-                <td>Sangat Kurus</td>
-                <td>&lt; 17.0</td>
-                <td>Kekurangan berat badan tingkat berat</td>
-              </tr>
-              <tr>
-                <td>Kurus</td>
-                <td>17.0 – &lt; 18.5</td>
-                <td>Kekurangan berat badan tingkat ringan</td>
+                <td>Berat Badan Kurang</td>
+                <td>&lt; 18.5</td>
+                <td>Underweight (Kekurangan berat badan)</td>
               </tr>
               <tr class="highlight">
-                <td><strong>Normal ✅  ← Budi (19.13)</strong></td>
-                <td>18.5 – &lt; 25.0</td>
-                <td>Berat badan ideal</td>
+                <td><strong>Berat Badan Normal ✅  ← Budi (19.13)</strong></td>
+                <td>18.5 – &lt; 23.0</td>
+                <td>Berat badan ideal (Normal)</td>
               </tr>
               <tr>
-                <td>Gemuk / Lebih</td>
-                <td>25.0 – &lt; 27.0</td>
-                <td>Kelebihan berat badan tingkat ringan</td>
+                <td>Kelebihan Berat Badan</td>
+                <td>23.0 – &lt; 25.0</td>
+                <td>Overweight (Kelebihan berat badan ringan)</td>
               </tr>
               <tr>
-                <td>Obesitas</td>
-                <td>≥ 27.0</td>
-                <td>Kelebihan berat badan tingkat berat</td>
+                <td>Obesitas I</td>
+                <td>25.0 – &lt; 30.0</td>
+                <td>Obesitas tingkat I</td>
+              </tr>
+              <tr>
+                <td>Obesitas II</td>
+                <td>≥ 30.0</td>
+                <td>Obesitas tingkat II (berat)</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p class="text-xs text-muted" style="margin-top:0.4rem">
-          IMT 19.13 → masuk rentang 18.5 – 25.0 → <strong>Normal</strong>
+          IMT 19.13 → masuk rentang 18.5 – 23.0 → <strong>Berat Badan Normal</strong>
         </p>
       </div>
 
@@ -1188,23 +1188,35 @@ body {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>💼 Minimal</td>
+              <td>× 1.2</td>
+              <td>Minimal bergerak atau kerja kantoran</td>
+              <td style="font-size:0.8rem;color:var(--neutral-600)">Pekerjaan kantor, duduk lama, aktivitas minimal</td>
+            </tr>
             <tr class="highlight">
               <td><strong>🚶 Ringan ← Budi</strong></td>
               <td><strong>× 1.375</strong></td>
-              <td>Olahraga ringan 1–3 hari/minggu</td>
+              <td>Aktivitas ringan, olahraga 1–2 kali/minggu</td>
               <td style="font-size:0.8rem;color:var(--neutral-600)">Jalan kaki, pekerjaan kantor, kegiatan rumah tangga ringan</td>
             </tr>
             <tr>
               <td>🏃 Sedang</td>
               <td>× 1.55</td>
-              <td>Olahraga sedang 3–5 hari/minggu</td>
+              <td>Kegiatan/aktivitas sedang, olahraga 3–5 hari/minggu</td>
               <td style="font-size:0.8rem;color:var(--neutral-600)">Jogging, bersepeda, renang santai</td>
             </tr>
             <tr>
               <td>🏋️ Berat</td>
               <td>× 1.725</td>
-              <td>Olahraga berat 6–7 hari/minggu</td>
-              <td style="font-size:0.8rem;color:var(--neutral-600)">Latihan intensif, atlet, pekerjaan fisik berat</td>
+              <td>Aktivitas berat, olahraga 6–7 hari/minggu</td>
+              <td style="font-size:0.8rem;color:var(--neutral-600)">Latihan intensif, atlet, pekerjaan fisik berat setiap hari</td>
+            </tr>
+            <tr>
+              <td>⚡ Ekstrem</td>
+              <td>× 1.9</td>
+              <td>Kegiatan/aktivitas ekstrem, olahraga 2 kali sehari atau lebih</td>
+              <td style="font-size:0.8rem;color:var(--neutral-600)">Atlet profesional, latihan dua kali sehari, pekerjaan sangat fisik dengan olahraga intensif</td>
             </tr>
           </tbody>
         </table>
@@ -1482,29 +1494,37 @@ const WHO_DATA = {
 
 // ─── KLASIFIKASI IMT (WHO) ────────────────────────────────
 const IMT_KLASIFIKASI = [
-  { label: 'Sangat Kurus',   min: 0,    max: 17.0,  class: 'buruk',    desc: 'Kekurangan berat badan tingkat berat' },
-  { label: 'Kurus',          min: 17.0, max: 18.5,  class: 'kurang',   desc: 'Kekurangan berat badan tingkat ringan' },
-  { label: 'Normal',         min: 18.5, max: 25.0,  class: 'normal',   desc: 'Berat badan ideal' },
-  { label: 'Gemuk / Lebih',  min: 25.0, max: 27.0,  class: 'lebih',    desc: 'Kelebihan berat badan tingkat ringan' },
-  { label: 'Obesitas',       min: 27.0, max: 999,   class: 'obesitas', desc: 'Kelebihan berat badan tingkat berat' },
+  { label: 'Berat Badan Kurang',      min: 0,    max: 18.5,  class: 'buruk',    desc: 'Underweight (Kekurangan berat badan)' },
+  { label: 'Berat Badan Normal',      min: 18.5, max: 23.0,  class: 'normal',   desc: 'Berat badan ideal (Normal)' },
+  { label: 'Kelebihan Berat Badan',   min: 23.0, max: 25.0,  class: 'lebih',    desc: 'Overweight (Kelebihan berat badan ringan)' },
+  { label: 'Obesitas I',              min: 25.0, max: 30.0,  class: 'obesitas', desc: 'Obesitas tingkat I' },
+  { label: 'Obesitas II',             min: 30.0, max: 999,   class: 'obesitas', desc: 'Obesitas tingkat II (berat)' },
 ];
 
 // ─── AKTIVITAS FISIK ──────────────────────────────────────
 const AKTIVITAS_DATA = [
   {
+    key: 'minimal',
+    label: 'Minimal',
+    icon: '💼',
+    factor: 1.2,
+    desc: 'Minimal bergerak atau kerja kantoran',
+    contoh: 'Pekerjaan kantor, duduk lama, aktivitas minimal'
+  },
+  {
     key: 'ringan',
     label: 'Ringan',
     icon: '🚶',
     factor: 1.375,
-    desc: 'Olahraga ringan 1–3 hari/minggu',
-    contoh: 'Jalan kaki, pekerjaan kantor, kegiatan rumah tangga ringan'
+    desc: 'Aktivitas ringan, olahraga 1–2 kali/minggu',
+    contoh: 'Jalan kaki, kegiatan rumah tangga ringan, pekerjaan ringan'
   },
   {
     key: 'sedang',
     label: 'Sedang',
     icon: '🏃',
     factor: 1.55,
-    desc: 'Olahraga sedang 3–5 hari/minggu',
+    desc: 'Kegiatan/aktivitas sedang, olahraga 3–5 hari/minggu',
     contoh: 'Jogging, bersepeda, renang santai, pelajar aktif'
   },
   {
@@ -1512,8 +1532,16 @@ const AKTIVITAS_DATA = [
     label: 'Berat',
     icon: '🏋️',
     factor: 1.725,
-    desc: 'Olahraga berat 6–7 hari/minggu',
-    contoh: 'Latihan intensif, atlet, pekerjaan fisik berat'
+    desc: 'Aktivitas berat, olahraga 6–7 hari/minggu',
+    contoh: 'Latihan intensif, atlet, pekerjaan fisik berat setiap hari'
+  },
+  {
+    key: 'ekstrem',
+    label: 'Ekstrem',
+    icon: '⚡',
+    factor: 1.9,
+    desc: 'Kegiatan/aktivitas ekstrem, olahraga 2 kali sehari atau lebih',
+    contoh: 'Atlet profesional, latihan dua kali sehari, pekerjaan sangat fisik dengan olahraga intensif'
   },
 ];
 
