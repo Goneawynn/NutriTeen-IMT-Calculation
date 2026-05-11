@@ -64,12 +64,12 @@ const WHO_DATA = {
   ]
 };
 
-// ─── KLASIFIKASI IMT (WHO) ────────────────────────────────
+// ─── KLASIFIKASI IMT ──────────────────────────────────────
 const IMT_KLASIFIKASI = [
   { label: 'Berat Badan Kurang',      min: 0,    max: 18.5,  class: 'buruk',    desc: 'Underweight (Kekurangan berat badan)' },
-  { label: 'Berat Badan Normal',      min: 18.5, max: 23.0,  class: 'normal',   desc: 'Berat badan ideal (Normal)' },
-  { label: 'Kelebihan Berat Badan',   min: 23.0, max: 25.0,  class: 'lebih',    desc: 'Overweight (Kelebihan berat badan ringan)' },
-  { label: 'Obesitas I',              min: 25.0, max: 30.0,  class: 'obesitas', desc: 'Obesitas tingkat I' },
+  { label: 'Berat Badan Normal',      min: 18.5, max: 22.9,  class: 'normal',   desc: 'Berat badan ideal (Normal)' },
+  { label: 'Kelebihan Berat Badan',   min: 23.0, max: 24.9,  class: 'lebih',    desc: 'Overweight (Kelebihan berat badan)' },
+  { label: 'Obesitas I',              min: 25.0, max: 29.9,  class: 'obesitas', desc: 'Obesitas tingkat I' },
   { label: 'Obesitas II',             min: 30.0, max: 999,   class: 'obesitas', desc: 'Obesitas tingkat II (berat)' },
 ];
 
