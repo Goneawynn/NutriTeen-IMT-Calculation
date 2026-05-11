@@ -372,7 +372,7 @@ body {
 /* Aktivitas cards */
 .aktivitas-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 0.75rem;
 }
 .aktivitas-card {
@@ -977,10 +977,16 @@ body {
           <label class="form-label">Tingkat Aktivitas Fisik</label>
           <div class="aktivitas-grid">
             <label class="aktivitas-card">
+              <input type="radio" name="aktivitas" value="minimal">
+              <div class="ak-icon">💼</div>
+              <div class="ak-title">Minimal</div>
+              <div class="ak-desc">Kerja kantoran, minimal bergerak<br>Faktor: 1.2</div>
+            </label>
+            <label class="aktivitas-card">
               <input type="radio" name="aktivitas" value="ringan">
               <div class="ak-icon">🚶</div>
               <div class="ak-title">Ringan</div>
-              <div class="ak-desc">Olahraga 1–3 hari/minggu<br>Faktor: 1.375</div>
+              <div class="ak-desc">Olahraga 1–2 hari/minggu<br>Faktor: 1.375</div>
             </label>
             <label class="aktivitas-card">
               <input type="radio" name="aktivitas" value="sedang">
@@ -993,6 +999,12 @@ body {
               <div class="ak-icon">🏋️</div>
               <div class="ak-title">Berat</div>
               <div class="ak-desc">Olahraga 6–7 hari/minggu<br>Faktor: 1.725</div>
+            </label>
+            <label class="aktivitas-card">
+              <input type="radio" name="aktivitas" value="ekstrem">
+              <div class="ak-icon">⚡</div>
+              <div class="ak-title">Ekstrem</div>
+              <div class="ak-desc">Atlet, 2x sehari atau lebih<br>Faktor: 1.9</div>
             </label>
           </div>
           <span class="form-error" id="err-aktivitas">Pilih tingkat aktivitas fisik.</span>
@@ -1134,7 +1146,7 @@ body {
         <!-- Gauge -->
         <div class="zscore-gauge" style="margin-top:1.25rem">
           <div class="form-label" style="margin-bottom:0.5rem"><h2>Visualisasi Posisi Z-score</h2></div>
-          <p>Garfik di bawah menunjukkan posisi Z-score kamu dalam distribusi normal. Setiap zona memiliki kategori gizi yang berbeda.</p>
+          <p>Grafik di bawah menunjukkan posisi Z-score kamu dalam distribusi normal. Setiap zona memiliki kategori gizi yang berbeda.</p>
 
           <div class="gauge-track">
             <div class="gauge-pointer" id="gaugePointer" style="left:50%"></div>
@@ -1291,29 +1303,37 @@ const WHO_DATA = {
 
 // ─── KLASIFIKASI IMT (WHO) ────────────────────────────────
 const IMT_KLASIFIKASI = [
-  { label: 'Sangat Kurus',   min: 0,    max: 17.0,  class: 'buruk',    desc: 'Kekurangan berat badan tingkat berat' },
-  { label: 'Kurus',          min: 17.0, max: 18.5,  class: 'kurang',   desc: 'Kekurangan berat badan tingkat ringan' },
-  { label: 'Normal',         min: 18.5, max: 25.0,  class: 'normal',   desc: 'Berat badan ideal' },
-  { label: 'Gemuk / Lebih',  min: 25.0, max: 27.0,  class: 'lebih',    desc: 'Kelebihan berat badan tingkat ringan' },
-  { label: 'Obesitas',       min: 27.0, max: 999,   class: 'obesitas', desc: 'Kelebihan berat badan tingkat berat' },
+  { label: 'Berat Badan Kurang',      min: 0,    max: 18.5,  class: 'buruk',    desc: 'Underweight (Kekurangan berat badan)' },
+  { label: 'Berat Badan Normal',      min: 18.5, max: 22.9,  class: 'normal',   desc: 'Berat badan ideal (Normal)' },
+  { label: 'Kelebihan Berat Badan',   min: 23.0, max: 24.9,  class: 'lebih',    desc: 'Overweight (Kelebihan berat badan)' },
+  { label: 'Obesitas I',              min: 25.0, max: 29.9,  class: 'obesitas', desc: 'Obesitas tingkat I' },
+  { label: 'Obesitas II',             min: 30.0, max: 999,   class: 'obesitas', desc: 'Obesitas tingkat II (berat)' },
 ];
 
 // ─── AKTIVITAS FISIK ──────────────────────────────────────
 const AKTIVITAS_DATA = [
   {
+    key: 'minimal',
+    label: 'Minimal',
+    icon: '💼',
+    factor: 1.2,
+    desc: 'Minimal bergerak atau kerja kantoran',
+    contoh: 'Pekerjaan kantor, duduk lama, aktivitas minimal'
+  },
+  {
     key: 'ringan',
     label: 'Ringan',
     icon: '🚶',
     factor: 1.375,
-    desc: 'Olahraga ringan 1–3 hari/minggu',
-    contoh: 'Jalan kaki, pekerjaan kantor, kegiatan rumah tangga ringan'
+    desc: 'Aktivitas ringan, olahraga 1–2 kali/minggu',
+    contoh: 'Jalan kaki, kegiatan rumah tangga ringan, pekerjaan ringan'
   },
   {
     key: 'sedang',
     label: 'Sedang',
     icon: '🏃',
     factor: 1.55,
-    desc: 'Olahraga sedang 3–5 hari/minggu',
+    desc: 'Kegiatan/aktivitas sedang, olahraga 3–5 hari/minggu',
     contoh: 'Jogging, bersepeda, renang santai, pelajar aktif'
   },
   {
@@ -1321,8 +1341,16 @@ const AKTIVITAS_DATA = [
     label: 'Berat',
     icon: '🏋️',
     factor: 1.725,
-    desc: 'Olahraga berat 6–7 hari/minggu',
-    contoh: 'Latihan intensif, atlet, pekerjaan fisik berat'
+    desc: 'Aktivitas berat, olahraga 6–7 hari/minggu',
+    contoh: 'Latihan intensif, atlet, pekerjaan fisik berat setiap hari'
+  },
+  {
+    key: 'ekstrem',
+    label: 'Ekstrem',
+    icon: '⚡',
+    factor: 1.9,
+    desc: 'Kegiatan/aktivitas ekstrem, olahraga 2 kali sehari atau lebih',
+    contoh: 'Atlet profesional, latihan dua kali sehari, pekerjaan sangat fisik dengan olahraga intensif'
   },
 ];
 
@@ -1730,7 +1758,7 @@ document.getElementById('formIMT').addEventListener('submit', function(e) {
 
   // 1. Hasil IMT
   document.getElementById('hasilIMT').textContent  = fmt(imt);
-  document.getElementById('hasilStatus').innerHTML = `${status.emoji} ${status.label}`;
+  document.getElementById('hasilStatus').innerHTML = `${status.emoji} ${status.label} • ${klasif.label}`;
   document.getElementById('ringkasanData').innerHTML =
     `👤 ${nama} &nbsp;|&nbsp; ${jkLabel}<br>` +
     `📅 ${usiaBulanLabel(usiaBln)}<br>` +
@@ -1747,10 +1775,17 @@ document.getElementById('formIMT').addEventListener('submit', function(e) {
     const isMe = (imt >= k.min && imt < k.max);
     const tr   = document.createElement('tr');
     if (isMe) tr.className = 'highlight';
-    const maxLabel = k.max === 999 ? '≥ 27.0' : `< ${k.max}`;
+    let rangeLabel;
+    if (k.max === 999) {
+      rangeLabel = `≥ ${k.min}`;
+    } else if (k.min === 0) {
+      rangeLabel = `< ${k.max}`;
+    } else {
+      rangeLabel = `${k.min} – < ${k.max}`;
+    }
     tr.innerHTML = `
       <td><strong>${k.label}</strong>${isMe ? ' 👈 Kamu' : ''}</td>
-      <td>${k.min === 0 ? '< 17.0' : `${k.min} – ${maxLabel}`}</td>
+      <td>${rangeLabel}</td>
       <td>${k.desc}</td>`;
     tkBody.appendChild(tr);
   });

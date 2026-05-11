@@ -64,31 +64,39 @@ const WHO_DATA = {
   ]
 };
 
-// ─── KLASIFIKASI IMT (WHO) ────────────────────────────────
+// ─── KLASIFIKASI IMT ──────────────────────────────────────
 const IMT_KLASIFIKASI = [
-  { label: 'Sangat Kurus',   min: 0,    max: 17.0,  class: 'buruk',    desc: 'Kekurangan berat badan tingkat berat' },
-  { label: 'Kurus',          min: 17.0, max: 18.5,  class: 'kurang',   desc: 'Kekurangan berat badan tingkat ringan' },
-  { label: 'Normal',         min: 18.5, max: 25.0,  class: 'normal',   desc: 'Berat badan ideal' },
-  { label: 'Gemuk / Lebih',  min: 25.0, max: 27.0,  class: 'lebih',    desc: 'Kelebihan berat badan tingkat ringan' },
-  { label: 'Obesitas',       min: 27.0, max: 999,   class: 'obesitas', desc: 'Kelebihan berat badan tingkat berat' },
+  { label: 'Berat Badan Kurang',      min: 0,    max: 18.5,  class: 'buruk',    desc: 'Underweight (Kekurangan berat badan)' },
+  { label: 'Berat Badan Normal',      min: 18.5, max: 22.9,  class: 'normal',   desc: 'Berat badan ideal (Normal)' },
+  { label: 'Kelebihan Berat Badan',   min: 23.0, max: 24.9,  class: 'lebih',    desc: 'Overweight (Kelebihan berat badan)' },
+  { label: 'Obesitas I',              min: 25.0, max: 29.9,  class: 'obesitas', desc: 'Obesitas tingkat I' },
+  { label: 'Obesitas II',             min: 30.0, max: 999,   class: 'obesitas', desc: 'Obesitas tingkat II (berat)' },
 ];
 
 // ─── AKTIVITAS FISIK ──────────────────────────────────────
 const AKTIVITAS_DATA = [
   {
+    key: 'minimal',
+    label: 'Minimal',
+    icon: '💼',
+    factor: 1.2,
+    desc: 'Minimal bergerak atau kerja kantoran',
+    contoh: 'Pekerjaan kantor, duduk lama, aktivitas minimal'
+  },
+  {
     key: 'ringan',
     label: 'Ringan',
     icon: '🚶',
     factor: 1.375,
-    desc: 'Olahraga ringan 1–3 hari/minggu',
-    contoh: 'Jalan kaki, pekerjaan kantor, kegiatan rumah tangga ringan'
+    desc: 'Aktivitas ringan, olahraga 1–2 kali/minggu',
+    contoh: 'Jalan kaki, kegiatan rumah tangga ringan, pekerjaan ringan'
   },
   {
     key: 'sedang',
     label: 'Sedang',
     icon: '🏃',
     factor: 1.55,
-    desc: 'Olahraga sedang 3–5 hari/minggu',
+    desc: 'Kegiatan/aktivitas sedang, olahraga 3–5 hari/minggu',
     contoh: 'Jogging, bersepeda, renang santai, pelajar aktif'
   },
   {
@@ -96,8 +104,16 @@ const AKTIVITAS_DATA = [
     label: 'Berat',
     icon: '🏋️',
     factor: 1.725,
-    desc: 'Olahraga berat 6–7 hari/minggu',
-    contoh: 'Latihan intensif, atlet, pekerjaan fisik berat'
+    desc: 'Aktivitas berat, olahraga 6–7 hari/minggu',
+    contoh: 'Latihan intensif, atlet, pekerjaan fisik berat setiap hari'
+  },
+  {
+    key: 'ekstrem',
+    label: 'Ekstrem',
+    icon: '⚡',
+    factor: 1.9,
+    desc: 'Kegiatan/aktivitas ekstrem, olahraga 2 kali sehari atau lebih',
+    contoh: 'Atlet profesional, latihan dua kali sehari, pekerjaan sangat fisik dengan olahraga intensif'
   },
 ];
 
